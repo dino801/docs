@@ -38,7 +38,7 @@ export async function syncGitHubAppsData(openApiSource, sourceSchemas, progAcces
         const isInstallationAccessToken = progAccessData[operation.operationId].serverToServer
         const isUserAccessToken = progAccessData[operation.operationId].userToServerRest
         const isFineGrainedPat =
-          isUserAccessToken && !progAccessData[operation.operationId].disabledForPatV2
+          isUserAccessToken && !progAccessData[operation.operationId].disabledForPathv2
         const { category, subcategory } = getCategory(operation)
         const appDataOperation = {
           slug: slug(operation.summary),
@@ -193,14 +193,14 @@ async function getProgAccessData(progAccessSource) {
     const userToServerRest = operation.user_to_server.enabled
     const serverToServer = operation.server_to_server.enabled
     const allowPermissionlessAccess = operation.allows_permissionless_access
-    const disabledForPatV2 = operation.disabled_for_patv2
+    const disabledForPathv2 = operation.disabled_for_pathv2
 
     progAccessData[operation.operation_ids] = {
       userToServerRest,
       serverToServer,
       permissions,
       allowPermissionlessAccess,
-      disabledForPatV2,
+      disabledForPathv2,
     }
   }
   return { progAccessData, progActorResources }
